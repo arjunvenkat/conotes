@@ -1,0 +1,29 @@
+<h1>Listing tag_associations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Note</th>
+      <th>Tag</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tag_associations.each do |tag_association| %>
+      <tr>
+        <td><%= truncate(tag_association.note.contents, length: 20) %></td>
+        <td><%= tag_association.tag.name %></td>
+        <td><%= link_to 'Show', tag_association %></td>
+        <td><%= link_to 'Edit', edit_tag_association_path(tag_association) %></td>
+        <td><%= link_to 'Destroy', tag_association, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tag association', new_tag_association_path %>

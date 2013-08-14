@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tag.name %>
+</p>
+
+<p>These other tags appear with <code><%= @tag.name %></code><p>
+
+<ul>
+  <% @associated_tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+
+<p>Notes:</p>
+
+<ul>
+  <% @tag.notes.each do |note| %>
+    <li><%= note.contents %></li>
+  <% end %>
+</ul>
+
+
+
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

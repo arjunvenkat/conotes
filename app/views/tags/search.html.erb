@@ -1,0 +1,44 @@
+Displaying notes that are tagged as:
+
+
+<% @searched_tags.each_with_index do |tag, index| %>
+  <% if index == @searched_tags.count - 1 %>
+    <b>
+      <%= tag.name %>
+      <%= link_to "x", tags_search_path(searched_tag_ids: (@searched_tag_ids - [tag.id.to_s])) %>
+    </b>
+  <% else %>
+    <b>
+      <%#= raise (@searched_tag_ids - [tag.id.to_s]).inspect %>
+      <%= tag.name %>
+      <%= link_to "x", tags_search_path(searched_tag_ids: (@searched_tag_ids - [tag.id.to_s])) %>
+    </b> and
+  <% end %>
+<% end %>
+
+<div><%= link_to 'clear all', tags_search_path(searched_tag_ids: [])  %></div>
+
+<p>Add the following tags to your search</p>
+<ul>
+  <% @leftover_tags.each do |tag| %>
+    <li><%= link_to tag.name, tags_search_path(tag_id: tag.id, searched_tag_ids: @searched_tag_ids) %></li>
+  <% end %>
+</ul>
+
+<h3>Filtered notes:</h3>
+<ul>
+<% @searched_notes.try(:each) do |note| %>
+  <li><%= truncate(note.contents) %> ---
+    <% note.tags.each do |tag| %>
+      <%= tag.name %> /
+    <% end %>
+
+  </li>
+<% end %>
+</ul>
+
+
+
+
+
+

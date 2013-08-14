@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contents:</strong>
+  <pre>
+  <%= @note.contents %>
+  </pre>
+</p>
+
+<p>Tags:</p>
+
+<ul>
+<% @note.tags.each do |tag| %>
+  <li><%= tag.name %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

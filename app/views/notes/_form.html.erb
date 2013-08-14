@@ -1,0 +1,36 @@
+<%= form_for(@note) do |f| %>
+  <% if @note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% @note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contents %><br>
+    <%= f.text_area :contents, size: "70x20" %>
+  </div>
+
+  Recent tags that may apply:
+  <% @recent_tags.each do |tag| %>
+    <div>
+      <%= label_tag "tags[#{tag.id}]", "#{tag.name}" %>
+      <%= check_box_tag "tags[#{tag.id}]" %>
+    </div>
+  <% end %>
+  <div>
+    <div>
+      <%= label_tag :new_tags, "Enter any other tags as a comma separated list" %>
+    </div>
+    <%= text_field_tag :new_tags, nil, placeholder: "tag1, tag_two, tag three", size: 50 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
